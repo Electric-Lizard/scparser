@@ -1,7 +1,7 @@
 # scparser
 USAGE:
 - run build.sh
-- open index.html with disabled SAME-POLICY checking, i.e.: 
+- open index.html with disabled Same-Origin policy checking, i.e.: 
 ```sh
 chromium --disable-web-security
 ```
