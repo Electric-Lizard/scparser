@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="style-dump.css"/>
+
+    <script src="out/giftparser.min.js"></script>
+</head>
+<body>
+<div id="target"></div>
+<script type="text/template" id="scparser-table">
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>Name</th>
+            <th>Gift ID</th>
+            <th>Price</th>
+            <th>Is Available</th>
+        </tr>
+    </table>
+</script>
+<script type="text/template" id="scparser-table-row">
+    <td><%=gift.getStatus()%></td>
+    <td><%=gift.getName()%></td>
+    <td><%=gift.getGiftId()%></td>
+    <td><%=gift.getPrice()%></td>
+    <td><%=gift.getIsAvailable()%></td>
+</script>
+</body>
+</html>
