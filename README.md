@@ -5,3 +5,8 @@ USAGE:
 ```sh
 chromium --disable-web-security
 ```
+DEPENDENCIES:
+- [babel] \(Compilation from ECMA6)
+
+
+[babel]:<http://babeljs.io/>
