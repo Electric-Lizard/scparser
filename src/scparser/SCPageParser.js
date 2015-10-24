@@ -30,6 +30,7 @@ class SCPageParser {
     }
 
     fetch() {
+        this.checkForWinnings();
         let links = this.$('.giveaway-links');
         links.each((i, link) => this.parseLink($(link).attr('href')));
     }
@@ -72,6 +73,12 @@ class SCPageParser {
                 this.addGift(link, gift);
             }
         });
+    }
+
+    checkForWinnings() {
+        if (this.$('.giveaways-icon .icon-notification').length > 0) {
+            this.trigger('won');
+        }
     }
 
     $() {

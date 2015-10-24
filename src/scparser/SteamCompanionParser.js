@@ -35,6 +35,7 @@ export class SteamCompanionParser {
                 let dom = (new DOMParser()).parseFromString(data, 'text/html');
                 let parser = new SCPageParser({}, dom);
                 parser.on('linkParsed', ({gift: gift}) => this.addGift(gift));
+                parser.on('won', () => this.trigger('won'));
                 parser.fetch();
 
                 let nextPage = $(dom.getElementsByTagName('body')).find('.pagination a:contains("Next")');

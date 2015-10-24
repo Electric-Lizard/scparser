@@ -20,6 +20,8 @@ class SCParserTable extends Backbone.View {
             this.giftMap.set(gift, row);
             this.$table.append(row.el);
         });
+
+        this.parser.on('won', () => this.congratulate());
     }
 
     render() {
@@ -31,6 +33,30 @@ class SCParserTable extends Backbone.View {
     sync() {
         this.parser.parse();
     }
+
+    congratulate() {
+        localStorage.setItem('congratulate?', true);
+        this.showCongratulations();
+    }
+
+    showCongratulations() {
+        if (localStorage.getItem('congratulate?') !== true) {
+            document.originalTitle = document.title;
+            document.title = '~GRAB YOUR GIFT~';
+            let $antiPatternButton = $('<button>Got it!</button>');
+            $antiPatternButton.css({
+                position: 'fixed',
+                top: 0,
+                left: 0
+            });
+            $antiPatternButton = $antiPatternButton.appendTo('body');
+            $antiPatternButton.on('click', () => {
+                localStorage.setItem('congratulate?', false);
+                $antiPatternButton.remove();
+                document.title = document.originalTitle;
+            });
+        }
+    }
 }
 
 class SCParserTableRow extends Backbone.View {
@@ -38,7 +64,7 @@ class SCParserTableRow extends Backbone.View {
     initialize(options) {
         super.initialize(options);
         this.gift = options.gift;
-        this.gift.on('change', m => this.render());
+        this.gift.on('change', () => this.render());
         this.template = _.template($('#scparser-table-row').html());
     }
 
